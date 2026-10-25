@@ -1,0 +1,47 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+
+  {% if protected_records_found %}
+    <p class="errornote">
+      No assets were deleted. Some selected assets have assignment or maintenance records that
+      are protected by the database relationship. Those records were not changed.
+    </p>
+    <ul>
+      {% for item in blockers %}
+        <li>
+          <strong>{{ item.asset.asset_tag }}</strong> —
+          {{ item.assignments }} assignment record(s),
+          {{ item.maintenance_records }} maintenance record(s).
+        </li>
+      {% endfor %}
+    </ul>
+    <p>Return to the asset list and review these records before trying again.</p>
+    <p><a class="button" href="{{ cancel_url }}">Return to assets</a></p>
+  {% else %}
+    <p><strong>This action permanently deletes the selected assets and their associated asset history.</strong></p>
+    <p>This cannot be undone. No model relationships or normal history permissions will be changed.</p>
+    <ul>
+      {% for asset in assets %}
+        <li>{{ asset.asset_tag }} — {{ asset.name|default:asset.display_name }}</li>
+      {% empty %}
+        <li>No assets selected.</li>
+      {% endfor %}
+    </ul>
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="delete_assets_with_history">
+      <input type="hidden" name="confirm_permanent_delete" value="yes">
+      {% for asset_id in selected_ids %}
+        <input type="hidden" name="_selected_action" value="{{ asset_id }}">
+      {% endfor %}
+      <button type="submit" class="button" {% if not assets %}disabled{% endif %}>
+        Yes, permanently delete selected assets and history
+      </button>
+      <a href="{{ cancel_url }}" class="button cancel-link">Cancel</a>
+    </form>
+  {% endif %}
+{% endblock %}
