@@ -1,6 +1,6 @@
 # DeskPilot — IT Helpdesk & Asset Management System
 
-DeskPilot is a role-based IT service desk and asset inventory application built with **React**, **Django REST Framework**, and **MySQL**. Employees can raise and track support tickets, IT Support Agents can investigate and manage permitted tickets, and Administrators can manage users, reference data, and company IT assets.
+DeskPilot is a role-based IT service desk and asset inventory application built with **React, Django REST Framework, and MySQL**. Employees can raise and track support tickets, IT Support Agents can investigate and manage permitted tickets, and Administrators can manage users, reference data, and company IT assets.
 
 <p align="left">
   <a href="https://desk-pilot-it-helpdesk.vercel.app/"><strong>Live Demo</strong></a> ·
@@ -8,11 +8,64 @@ DeskPilot is a role-based IT service desk and asset inventory application built 
   <a href="https://github.com/DuvvariMohankrishna/DeskPilot-IT-Helpdesk"><strong>GitHub Repository</strong></a>
 </p>
 
-> **Demo note:** The deployed application may contain demonstration records. Do not use demo data for real operational or sensitive business information.
+> **Demo note:** The deployed application contains demonstration accounts and records. Use the credentials below to explore the available functionality. Do not enter personal or confidential business information.
+
+---
+
+## 🔑 Live Demo Access
+
+Recruiters, developers, and project reviewers can explore DeskPilot using the following demonstration accounts.
+
+### 🛠️ IT Support Agent Account
+
+| Credential | Details |
+|---|---|
+| Username | `Mohan` |
+| Password | `Mohan@123` |
+| Role | IT Support Agent |
+
+**What you can explore:**
+
+- View the IT Support Agent dashboard.
+- Access permitted support tickets.
+- Investigate employee support requests.
+- Assign and manage tickets within permitted workflows.
+- Update ticket statuses.
+- Add public comments and internal support notes.
+- View ticket history and notifications.
+- Explore permitted asset information.
+
+### 👨‍💼 Employee Account
+
+| Credential | Details |
+|---|---|
+| Username | `Vijay` |
+| Password | `Vijay@123` |
+| Role | Employee |
+
+**What you can explore:**
+
+- Access the Employee dashboard.
+- Create IT support tickets.
+- View your submitted support requests.
+- Track ticket status and progress.
+- View support updates.
+- Add comments to support tickets.
+- Explore permitted asset information.
+
+**How to access:**
+
+1. Open the [DeskPilot Live Application](https://desk-pilot-it-helpdesk.vercel.app/).
+2. Enter the username and password for either demonstration account.
+3. Sign in and explore the role-specific dashboard.
+
+> **Important:** These are public demonstration credentials. They are not intended for real business operations. Demo users may be able to create or modify demonstration records within their permissions. Do not reuse these passwords for personal or production accounts.
+
+---
 
 ## Application Screenshots
 
-Add your genuine screenshots to the repository's `screenshots/` directory. The filenames below are examples—make sure they match the files you actually commit. Remove any image entry for a screen you have not captured.
+Add genuine screenshots to the repository's `screenshots/` directory. Make sure the filenames match the files you actually commit. Remove any image entry for a screen you have not captured.
 
 ### IT Support Agent Dashboard
 
@@ -41,6 +94,8 @@ Shows ticket description, requester, department, category, priority, assignment,
 ### User and Department Management
 
 ![DeskPilot User and Department Management](screenshots/user-management.png)
+
+---
 
 ## Key Features
 
@@ -71,7 +126,11 @@ Shows ticket description, requester, department, category, priority, assignment,
 
 ### Current Limitations
 
-The application currently does **not** include a file-attachment workflow, email notifications, an SLA/escalation engine, or a frontend automated test suite. Notifications are in-app. Do not interpret manual ticket assignment or administrator review as an automated escalation engine.
+The application currently does **not** include a file-attachment workflow, email notifications, an SLA/escalation engine, or a frontend automated test suite.
+
+Notifications are in-app. Do not interpret manual ticket assignment or administrator review as an automated escalation engine.
+
+---
 
 ## Technology Stack
 
@@ -80,10 +139,12 @@ The application currently does **not** include a file-attachment workflow, email
 | Frontend | React 18, Vite, React Router, Axios, Bootstrap, Recharts |
 | Backend | Python, Django, Django REST Framework, Simple JWT |
 | Database | MySQL |
-| API documentation | drf-spectacular / Swagger UI |
-| Frontend hosting | Vercel |
-| Backend hosting | Render |
-| Database hosting | Aiven for MySQL |
+| API Documentation | drf-spectacular / Swagger UI |
+| Frontend Hosting | Vercel |
+| Backend Hosting | Render |
+| Database Hosting | Aiven for MySQL |
+
+---
 
 ## Architecture
 
@@ -109,7 +170,7 @@ backend/
     ├── filters.py          # Query filters
     ├── pagination.py       # Standard API pagination
     ├── admin.py            # Django admin registrations
-    └── tests.py             # Backend regression tests
+    └── tests.py            # Backend regression tests
 ```
 
 ### Frontend Layout
@@ -128,6 +189,8 @@ frontend/
 └── package.json
 ```
 
+---
+
 ## Roles and Access Model
 
 | Capability | Employee | IT Support Agent | Administrator |
@@ -142,12 +205,16 @@ frontend/
 
 The backend is authoritative for permissions. Verify access through API requests as well as the user interface before production use.
 
+---
+
 ## Requirements
 
 - Python 3.11 or newer, compatible with the pinned dependency versions.
 - Node.js 20 or newer and npm.
 - MySQL 8.x or a compatible MySQL service.
 - Git.
+
+---
 
 ## Local Setup on Windows
 
@@ -164,10 +231,14 @@ pip install -r requirements.txt
 copy ..\.env.example ..\.env
 ```
 
-Edit the root `.env` file with local configuration and your local MySQL credentials. Create the `it_helpdesk` database first, for example in MySQL Workbench:
+Edit the root `.env` file with local configuration and your local MySQL credentials.
+
+Create the `it_helpdesk` database first, for example in MySQL Workbench:
 
 ```sql
-CREATE DATABASE it_helpdesk CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE it_helpdesk
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
 ```
 
 Then, from the `backend/` directory, run:
@@ -179,7 +250,11 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-The superuser is treated as an administrator by the application. Django Admin is available at `http://127.0.0.1:8000/admin/`. No demo users or demo records are created automatically. After signing in as an administrator, create departments, categories, and user accounts through the administration screens.
+The superuser is treated as an administrator by the application. Django Admin is available at:
+
+`http://127.0.0.1:8000/admin/`
+
+No demo users or demo records are created automatically in a fresh local installation. After signing in as an administrator, create departments, categories, and user accounts through the administration screens.
 
 ### 2. Configure the Frontend
 
@@ -192,17 +267,23 @@ npm ci
 npm run dev
 ```
 
-Open `http://localhost:5173`. The frontend API base URL defaults to `http://127.0.0.1:8000/api`; override it in `frontend/.env` with `VITE_API_BASE_URL` if needed. Restart the Vite development server after changing environment variables.
+Open `http://localhost:5173`.
+
+The frontend API base URL defaults to `http://127.0.0.1:8000/api`; override it in `frontend/.env` with `VITE_API_BASE_URL` if needed.
+
+Restart the Vite development server after changing environment variables.
 
 ### Useful Local URLs
 
 | Service | URL |
 |---|---|
-| React application | `http://localhost:5173/` |
-| API root | `http://127.0.0.1:8000/api/` |
+| React Application | `http://localhost:5173/` |
+| API Root | `http://127.0.0.1:8000/api/` |
 | Django Admin | `http://127.0.0.1:8000/admin/` |
 | Swagger UI | `http://127.0.0.1:8000/api/docs/` |
-| OpenAPI schema | `http://127.0.0.1:8000/api/schema/` |
+| OpenAPI Schema | `http://127.0.0.1:8000/api/schema/` |
+
+---
 
 ## Environment Variables
 
@@ -229,13 +310,31 @@ Open `http://localhost:5173`. The frontend API base URL defaults to `http://127.
 |---|---|
 | `VITE_API_BASE_URL` | Full API base URL ending in `/api`, for example `https://your-api.example.com/api`. |
 
-Only variables prefixed with `VITE_` are bundled into the browser application. **Never put secrets in frontend environment variables.**
+Only variables prefixed with `VITE_` are bundled into the browser application.
+
+**Never put secrets in frontend environment variables.**
+
+---
 
 ## API Overview
 
-The API uses JWT bearer tokens. Sign in through `POST /api/auth/login/`, use the returned access token in the `Authorization: Bearer <token>` header, and refresh through `POST /api/auth/refresh/` when needed.
+The API uses JWT bearer tokens.
 
-Main resource groups:
+Sign in through:
+
+`POST /api/auth/login/`
+
+Use the returned access token in the following header:
+
+```http
+Authorization: Bearer <token>
+```
+
+Refresh through:
+
+`POST /api/auth/refresh/`
+
+### Main Resource Groups
 
 - `/api/auth/` — login, refresh, current user, and optional registration endpoint (disabled by default).
 - `/api/tickets/` — tickets, assignment, status changes, comments, and history.
@@ -244,7 +343,11 @@ Main resource groups:
 - `/api/notifications/`.
 - `/api/dashboard/admin/`, `/api/dashboard/agent/`, `/api/dashboard/employee/`.
 
-See the [deployed Swagger UI](https://deskpilot-backend-jgn0.onrender.com/api/docs/) for the generated endpoint schema and request formats. The API may take time to respond if the hosting service is waking from an idle state.
+See the [deployed Swagger UI](https://deskpilot-backend-jgn0.onrender.com/api/docs/) for the generated endpoint schema and request formats.
+
+The API may take time to respond if the hosting service is waking from an idle state.
+
+---
 
 ## Validation and Manual Workflow Checks
 
@@ -275,9 +378,15 @@ The repository includes backend tests, but run the suite and production build in
 6. Attempt restricted operations with a non-admin account and verify that the API rejects them.
 7. Refresh pages and restart the backend to confirm that records persist in MySQL.
 
+---
+
 ## Deployment
 
-The deployed topology is **Vercel (React) + Render (Django API) + Aiven (MySQL)**. Hosting providers can change their plans and limits; check current pricing, sleep behavior, storage limits, and database availability before relying on a $0/month target.
+The deployed topology is:
+
+**Vercel (React) + Render (Django API) + Aiven (MySQL)**
+
+Hosting providers can change their plans and limits; check current pricing, sleep behavior, storage limits, and database availability before relying on a $0/month target.
 
 ### 1. Database — Aiven
 
@@ -289,23 +398,46 @@ The deployed topology is **Vercel (React) + Render (Django API) + Aiven (MySQL)*
 
 Create a Python web service from the repository and set its root directory to `backend`.
 
-- **Build command:** `pip install -r requirements.txt`
-- **Start command:** `python manage.py migrate && python manage.py collectstatic --noinput && gunicorn config.wsgi:application`
-- Configure `SECRET_KEY`, `DEBUG=False`, `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`, `CSRF_TRUSTED_ORIGINS`, and the Aiven `DB_*` values.
-- Set `DB_SSL_CA` only when the certificate file exists at the configured path and the TLS setup has been validated.
-- After deployment, verify `/api/docs/`, `/admin/`, login, migrations, and database connectivity. Create the initial administrator securely; do not ship a default account.
+**Build command:**
+
+```bash
+pip install -r requirements.txt
+```
+
+**Start command:**
+
+```bash
+python manage.py migrate && python manage.py collectstatic --noinput && gunicorn config.wsgi:application
+```
+
+Configure the following environment variables:
+
+- `SECRET_KEY`
+- `DEBUG=False`
+- `ALLOWED_HOSTS`
+- `CORS_ALLOWED_ORIGINS`
+- `CSRF_TRUSTED_ORIGINS`
+- Aiven `DB_*` values.
+
+Set `DB_SSL_CA` only when the certificate file exists at the configured path and the TLS setup has been validated.
+
+After deployment, verify `/api/docs/`, `/admin/`, login, migrations, and database connectivity. Create the initial administrator securely; do not ship a default account.
 
 ### 3. Frontend — Vercel
 
 Import the repository into Vercel and configure:
 
-- **Root directory:** `frontend`
-- **Framework preset:** Vite
-- **Build command:** `npm run build`
-- **Output directory:** `dist`
-- **Environment variable:** `VITE_API_BASE_URL=https://<your-render-host>/api`
+| Setting | Value |
+|---|---|
+| Root Directory | `frontend` |
+| Framework Preset | Vite |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+| Environment Variable | `VITE_API_BASE_URL=https://<your-render-host>/api` |
 
-`frontend/vercel.json` rewrites client-side routes to `index.html`. After deploying, confirm that direct navigation and refresh work on routes such as `/tickets` and `/assets`.
+`frontend/vercel.json` rewrites client-side routes to `index.html`.
+
+After deploying, confirm that direct navigation and refresh work on routes such as `/tickets` and `/assets`.
 
 ### 4. Production Verification
 
@@ -318,6 +450,8 @@ Import the repository into Vercel and configure:
 
 Cloudinary is not required by the current feature set because the application does not currently upload files. Add object or image storage only if a real upload feature is implemented.
 
+---
+
 ## Security and Data Notes
 
 - Never commit `.env` files, database passwords, production secrets, user exports, or database dumps.
@@ -328,17 +462,29 @@ Cloudinary is not required by the current feature set because the application do
 - Asset activity history records changes made through the application API; direct SQL changes are not recorded by that application-level audit log.
 - The Django Admin includes a confirmation-based, superuser-only action named **Permanently delete selected assets and their history**. It deletes associated `AssetHistory` rows only after explicit confirmation. If any selected asset has protected assignment or maintenance records, the action aborts the entire selection and reports the blockers. Back up the database before using permanent deletion.
 
+---
+
 ## Future Improvements
 
-Potential future enhancements include a file-attachment workflow, email notifications, SLA and escalation automation, frontend automated tests, and richer reporting. These are ideas for future development, not currently implemented features.
+Potential future enhancements include:
+
+- File-attachment workflow.
+- Email notifications.
+- SLA and escalation automation.
+- Frontend automated tests.
+- Richer reporting and analytics.
+
+These are ideas for future development, not currently implemented features.
+
+---
 
 ## Author
 
 **Duvvari Mohankrishna**
 
 - GitHub: [DuvvariMohankrishna](https://github.com/DuvvariMohankrishna)
-- Project repository: [DeskPilot — IT Helpdesk & Asset Management](https://github.com/DuvvariMohankrishna/DeskPilot-IT-Helpdesk)
-- Live application: [DeskPilot](https://desk-pilot-it-helpdesk.vercel.app/)
+- Project Repository: [DeskPilot — IT Helpdesk & Asset Management](https://github.com/DuvvariMohankrishna/DeskPilot-IT-Helpdesk)
+- Live Application: [DeskPilot](https://desk-pilot-it-helpdesk.vercel.app/)
 
 ---
 
